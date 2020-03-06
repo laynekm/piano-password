@@ -16,6 +16,10 @@ const useStyles = makeStyles(() =>
       '&:hover': {
         backgroundColor: '#1E88E5',
       },
+      '&::selection': {
+        color: 'none',
+        background: 'none',
+      },
     },
     blackKey: {
       height: 175,
@@ -31,19 +35,23 @@ const useStyles = makeStyles(() =>
       '&:hover': {
         backgroundColor: '#1E88E5',
       },
+      '&::selection': {
+        color: 'none',
+        background: 'none',
+      },
     },
   })
 );
 
 export const PianoKey = props => {
   const classes = useStyles();
-  const { value, variant, offset, text, updatePassword } = props;
+  const { value, variant, offset, text, updatePassword, index } = props;
 
   return (
     <div
       className={variant === 'white' ? classes.whiteKey : classes.blackKey}
       style={{ right: offset }}
-      onClick={() => updatePassword(value)}>
+      onClick={() => updatePassword(index, value)}>
       {text}
     </div>
   );

@@ -1,23 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { PianoKey } from './PianoKey';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() =>
   createStyles({
     root: {
-      height: '100%',
-      width: '100%',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
+      width: 340,
+      height: 250,
     },
     piano: {
       display: 'flex',
       flexDirection: 'row',
-      position: 'absolute',
       width: 500,
       height: 250,
-      left: 200,
       paddingTop: 25,
     },
     password: {
@@ -26,103 +21,110 @@ const useStyles = makeStyles(() =>
   })
 );
 
-export const Piano = () => {
+export const Piano = props => {
   const classes = useStyles();
-  const [password, setPassword] = useState([]);
-
-  const updatePassword = number => {
-    setPassword([...password, number]);
-  };
+  const { handleSetInputs, index } = props;
 
   const blackKeyOffset = 15;
   const whiteKeyOffset = 32;
 
   return (
     <div className={classes.root}>
-      <div className={password}>Password: {password.join(' ')}</div>
       <div className={classes.piano}>
         <PianoKey
-          value={1}
+          value={0}
           variant='white'
           text='C'
-          updatePassword={updatePassword}
+          updatePassword={handleSetInputs}
+          index={index}
         />
         <PianoKey
-          value={2}
+          value={1}
           variant='black'
           offset={blackKeyOffset}
           text='C#'
-          updatePassword={updatePassword}
+          updatePassword={handleSetInputs}
+          index={index}
         />
         <PianoKey
-          value={3}
+          value={2}
           variant='white'
           offset={whiteKeyOffset}
           text='D'
-          updatePassword={updatePassword}
+          updatePassword={handleSetInputs}
+          index={index}
         />
         <PianoKey
-          value={4}
+          value={3}
           variant='black'
           offset={blackKeyOffset + whiteKeyOffset}
           text='D#'
-          updatePassword={updatePassword}
+          updatePassword={handleSetInputs}
+          index={index}
+        />
+        <PianoKey
+          value={4}
+          variant='white'
+          offset={whiteKeyOffset * 2}
+          text='E'
+          updatePassword={handleSetInputs}
+          index={index}
         />
         <PianoKey
           value={5}
           variant='white'
           offset={whiteKeyOffset * 2}
-          text='E'
-          updatePassword={updatePassword}
+          text='F'
+          updatePassword={handleSetInputs}
+          index={index}
         />
         <PianoKey
           value={6}
-          variant='white'
-          offset={whiteKeyOffset * 2}
-          text='F'
-          updatePassword={updatePassword}
-        />
-        <PianoKey
-          value={7}
           variant='black'
           offset={blackKeyOffset + whiteKeyOffset * 2}
           text='F#'
-          updatePassword={updatePassword}
+          updatePassword={handleSetInputs}
+          index={index}
         />
         <PianoKey
-          value={8}
+          value={7}
           variant='white'
           offset={whiteKeyOffset * 3}
           text='G'
-          updatePassword={updatePassword}
+          updatePassword={handleSetInputs}
+          index={index}
         />
         <PianoKey
-          value={9}
+          value={8}
           variant='black'
           offset={blackKeyOffset + whiteKeyOffset * 3}
           text='G#'
-          updatePassword={updatePassword}
+          updatePassword={handleSetInputs}
+          index={index}
         />
         <PianoKey
-          value={10}
+          value={9}
           variant='white'
           offset={whiteKeyOffset * 4}
           text='A'
-          updatePassword={updatePassword}
+          updatePassword={handleSetInputs}
+          index={index}
         />
         <PianoKey
-          value={11}
+          value={10}
           variant='black'
           offset={blackKeyOffset + whiteKeyOffset * 4}
           text='A#'
-          updatePassword={updatePassword}
+          updatePassword={handleSetInputs}
+          index={index}
         />
         <PianoKey
-          value={12}
+          value={11}
           variant='white'
           offset={whiteKeyOffset * 5}
           text='B'
-          updatePassword={updatePassword}
+          updatePassword={handleSetInputs}
+          index={index}
         />
       </div>
     </div>
