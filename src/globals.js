@@ -1,8 +1,4 @@
-export const passwordTypes = {
-  0: 'Wifi',
-  1: 'Email',
-  2: 'McDonalds app',
-};
+export const passwordTypes = ['Wifi', 'Email', 'McDonalds app'];
 
 export const degreeToKey = [0, 2, 4, 7, 9];
 

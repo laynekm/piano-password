@@ -21,8 +21,9 @@ const useStyles = makeStyles(() =>
   })
 );
 
-export const Step2 = props => {
+export const Step4 = props => {
   const classes = useStyles();
+  const [attempts, setAttempts] = useState(0);
   const [step, setStep] = useState(0);
   const {
     nextParentStep,
@@ -30,7 +31,6 @@ export const Step2 = props => {
     inputs,
     handleSetInputs,
     clearInput,
-    clearAllInputs,
   } = props;
 
   if (inputs[step].length === passwords[step].value.length) {
@@ -38,27 +38,37 @@ export const Step2 = props => {
       flash(colors.correct);
       if (step + 1 > 2) {
         sleep(500).then(() => {
-          clearAllInputs();
           nextParentStep();
         });
       } else {
         sleep(500).then(() => {
           setStep(step + 1);
+          setAttempts(0);
         });
       }
     } else {
       flash(colors.incorrect);
-      sleep(500).then(() => {
-        clearInput(step);
-      });
+      if (attempts + 1 > 2) {
+        sleep(500).then(() => {
+          if (step + 1 > 2) nextParentStep();
+          else {
+            setStep(step + 1);
+            setAttempts(0);
+          }
+        });
+      } else {
+        sleep(500).then(() => {
+          clearInput(step);
+          setAttempts(attempts + 1);
+        });
+      }
     }
   }
 
   return (
     <div className={classes.root}>
       <h3>
-        {passwords[step].type} password:{' '}
-        {convertPassword(passwords[step].value)}
+        {passwords[step].type} password - Attempts: {attempts}/3
       </h3>
       <h3>Your input: {convertPassword(inputs[step])} </h3>
       <Piano handleSetInputs={handleSetInputs} index={step} />
