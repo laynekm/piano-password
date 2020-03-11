@@ -113,7 +113,10 @@ export const Step4 = props => {
         {passwords[step].type} password - Attempts: {attempts}/3
       </h3>
       <h3>Your input: {convertPassword(inputs[step])} </h3>
-      <Piano handleSetInputs={handleSetInputs} index={step} />
+      <Piano
+        handleSetInputs={sleeping ? () => {} : handleSetInputs}
+        index={step}
+      />
     </div>
   );
 };
