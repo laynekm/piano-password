@@ -5,7 +5,7 @@ import { Step3 } from './Step3';
 import { Step4 } from './Step4';
 import { Step5 } from './Step5';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
-import { generatePassword, shuffleArray, convertPassword } from './utils';
+import { generatePassword, shuffleArray } from './utils';
 import { passwordTypes } from './globals';
 
 const useStyles = makeStyles(() =>
@@ -28,7 +28,8 @@ const useStyles = makeStyles(() =>
 const App = () => {
   const classes = useStyles();
 
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(4);
+  const [logs, setLogs] = useState([]);
 
   // Generate passwords
   const [passwords] = useState({
@@ -47,9 +48,9 @@ const App = () => {
   });
 
   // For debugging purposes
-  for (const password of Object.values(passwords)) {
-    console.log(password.type + ': ' + convertPassword(password.value));
-  }
+  // for (const password of Object.values(passwords)) {
+  //   console.log(password.type + ': ' + convertPassword(password.value));
+  // }
 
   const [inputs, setInputs] = useState({ 0: [], 1: [], 2: [] });
 
@@ -73,6 +74,12 @@ const App = () => {
   const clearAllInputs = () => {
     setInputs({ 0: [], 1: [], 2: [] });
   };
+
+  const addLog = newLog => {
+    setLogs([...logs, newLog]);
+  };
+
+  console.log(logs);
 
   const renderStep = step => {
     switch (step) {
@@ -99,6 +106,7 @@ const App = () => {
             inputs={inputs}
             handleSetInputs={handleSetInputs}
             clearInput={clearInput}
+            addLog={addLog}
           />
         );
       case 5:
