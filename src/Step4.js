@@ -39,7 +39,7 @@ export const Step4 = props => {
 
   const addPasswordLog = () => {
     addLog({
-      trial: step,
+      trial: step + 1,
       attempt: attempts + 1,
       startTime: startTime,
       endTime: moment().format(),

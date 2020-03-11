@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { CircularProgress } from '@material-ui/core';
+import { storage } from 'firebase';
+import { createCsv } from './utils';
+const moment = require('moment');
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -12,13 +16,45 @@ const useStyles = makeStyles(() =>
       width: '100vw',
       paddingTop: 50,
     },
-    button: {
-      marginTop: 20,
+    loading: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+    },
+    circularProgess: {
+      margin: 25,
     },
   })
 );
 
-export const Step5 = () => {
+export const Step5 = props => {
+  const [loading, setLoading] = useState(true);
   const classes = useStyles();
-  return <div className={classes.root}>Thank you for participating!</div>;
+  const { logs } = props;
+
+  // Send data to Firebase
+  if (loading) {
+    storage()
+      .ref()
+      .child(`logs/${moment().format()}.csv`)
+      .put(createCsv(logs))
+      .then(() => {
+        setLoading(false);
+      });
+  }
+
+  return (
+    <div className={classes.root}>
+      {loading ? (
+        <div className={classes.loading}>
+          Submitting results...
+          <div className={classes.circularProgess}>
+            <CircularProgress />
+          </div>
+        </div>
+      ) : (
+        'Thank you for participating!'
+      )}
+    </div>
+  );
 };

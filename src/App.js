@@ -110,7 +110,7 @@ const App = () => {
           />
         );
       case 5:
-        return <Step5 />;
+        return <Step5 logs={logs} />;
       default:
         return <div />;
     }

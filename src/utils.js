@@ -1,4 +1,6 @@
 import { degreeToKey, noteNames, colors } from './globals';
+import { parse } from 'json2csv';
+import { moment } from 'moment';
 
 export const generatePassword = numNotes => {
   let key = Math.floor(Math.random() * 12);
@@ -47,4 +49,8 @@ export const flash = color => {
 
 export const sleep = ms => {
   return new Promise(resolve => setTimeout(resolve, ms));
+};
+
+export const createCsv = data => {
+  return new Blob([parse(data)], { type: 'text/csv;charset=utf-8;' });
 };
