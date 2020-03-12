@@ -32,6 +32,9 @@ export const Step5 = props => {
   const classes = useStyles();
   const { logs } = props;
 
+  // Print logs for debugging purposes
+  console.log(logs);
+
   // Send data to Firebase
   if (loading) {
     storage()

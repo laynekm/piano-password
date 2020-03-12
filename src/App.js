@@ -4,7 +4,7 @@ import { Step3 } from './Step3';
 import { PianoStep } from './PianoStep';
 import { Step5 } from './Step5';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
-import { generatePassword, shuffleArray } from './utils';
+import { generatePassword, shuffleArray, convertPassword } from './utils';
 import { passwordTypes } from './globals';
 
 const useStyles = makeStyles(() =>
@@ -48,6 +48,11 @@ const App = () => {
 
   const nextStep = () => {
     setStep(step + 1);
+
+    // Print passwords for debugging purposes
+    for (const password of Object.values(passwords)) {
+      console.log(`${password.type}: ${convertPassword(password.value)}`);
+    }
   };
 
   const handleSetInputs = (index, input) => {
@@ -89,7 +94,7 @@ const App = () => {
         return (
           <PianoStep
             testStep={false}
-            nextParentStep={nextStep}
+            nextStep={nextStep}
             passwords={passwords}
             inputs={inputs}
             handleSetInputs={handleSetInputs}
@@ -104,7 +109,7 @@ const App = () => {
         return (
           <PianoStep
             testStep={true}
-            nextParentStep={nextStep}
+            nextStep={nextStep}
             passwords={shuffledPasswords}
             inputs={inputs}
             handleSetInputs={handleSetInputs}

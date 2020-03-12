@@ -59,14 +59,15 @@ export const PianoStep = props => {
   const handleSubmit = () => {
     setSleeping(true);
 
-    // If input password is equal to expected password (CORRECT)
+    // If input password is equal to expected password
     if (arraysEqual(passwords[passwordStep].value, inputs[passwordStep])) {
       flash(colors.correct);
 
-      // If this was the last password, go to the next step (Step5)
+      // If this was the last password, go to the next step
       if (passwordStep + 1 > 2) {
         sleep(500).then(() => {
           setSleeping(false);
+          clearInput(passwordStep);
           nextStep();
         });
       }
@@ -75,18 +76,27 @@ export const PianoStep = props => {
         sleep(500).then(() => {
           setSleeping(false);
           setPasswordStep(passwordStep + 1);
+          clearInput(passwordStep);
           setAttempts(0);
         });
       }
     }
-    // Else, input password is not equal to expected password (INCORRECT)
+    // Else, input password is not equal to expected password
     else {
       flash(colors.incorrect);
-      // If this was the third attempt
-      if (attempts + 1 > 2) {
+
+      // Participant has as many attempts as they want if they are not being tested
+      if (!testStep) {
         sleep(500).then(() => {
           setSleeping(false);
-          // If this was the last password (password 3), go to the next step (Step5)
+          clearInput(passwordStep);
+        });
+      }
+      // If this was the third attempt
+      else if (attempts + 1 > 2) {
+        sleep(500).then(() => {
+          setSleeping(false);
+          // If this was the last password (password 3), go to the next step
           if (passwordStep + 1 > 2) nextStep();
           // Else, go to the next password
           else {
