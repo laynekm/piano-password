@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Step1 } from './Step1';
-import { Step2 } from './Step2';
 import { Step3 } from './Step3';
-import { Step4 } from './Step4';
+import { PianoStep } from './PianoStep';
 import { Step5 } from './Step5';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { generatePassword, shuffleArray } from './utils';
@@ -27,9 +26,9 @@ const useStyles = makeStyles(() =>
 
 const App = () => {
   const classes = useStyles();
-
-  const [step, setStep] = useState(4);
+  const [step, setStep] = useState(1);
   const [logs, setLogs] = useState([]);
+  const [inputs, setInputs] = useState({ 0: [], 1: [], 2: [] });
 
   // Generate passwords
   const [passwords] = useState({
@@ -47,13 +46,6 @@ const App = () => {
     2: passwordValues[2],
   });
 
-  // For debugging purposes
-  // for (const password of Object.values(passwords)) {
-  //   console.log(password.type + ': ' + convertPassword(password.value));
-  // }
-
-  const [inputs, setInputs] = useState({ 0: [], 1: [], 2: [] });
-
   const nextStep = () => {
     setStep(step + 1);
   };
@@ -63,6 +55,16 @@ const App = () => {
       setInputs({
         ...inputs,
         [index]: [...inputs[index], input],
+      });
+    }
+  };
+
+  const handleUndo = index => {
+    if (inputs[index].length > 0) {
+      inputs[index].pop();
+      setInputs({
+        ...inputs,
+        [index]: inputs[index],
       });
     }
   };
@@ -79,19 +81,19 @@ const App = () => {
     setLogs([...logs, newLog]);
   };
 
-  console.log(logs);
-
   const renderStep = step => {
     switch (step) {
       case 1:
         return <Step1 nextStep={nextStep} />;
       case 2:
         return (
-          <Step2
+          <PianoStep
+            testStep={false}
             nextParentStep={nextStep}
             passwords={passwords}
             inputs={inputs}
             handleSetInputs={handleSetInputs}
+            handleUndo={handleUndo}
             clearInput={clearInput}
             clearAllInputs={clearAllInputs}
           />
@@ -100,11 +102,13 @@ const App = () => {
         return <Step3 nextStep={nextStep} />;
       case 4:
         return (
-          <Step4
+          <PianoStep
+            testStep={true}
             nextParentStep={nextStep}
             passwords={shuffledPasswords}
             inputs={inputs}
             handleSetInputs={handleSetInputs}
+            handleUndo={handleUndo}
             clearInput={clearInput}
             addLog={addLog}
           />

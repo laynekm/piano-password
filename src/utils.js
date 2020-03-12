@@ -1,6 +1,5 @@
 import { degreeToKey, noteNames, colors } from './globals';
 import { parse } from 'json2csv';
-import { moment } from 'moment';
 
 export const generatePassword = numNotes => {
   let key = Math.floor(Math.random() * 12);

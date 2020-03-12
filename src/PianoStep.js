@@ -22,29 +22,31 @@ const useStyles = makeStyles(() =>
   })
 );
 
-export const Step4 = props => {
+export const PianoStep = props => {
   const classes = useStyles();
   const [attempts, setAttempts] = useState(0);
-  const [step, setStep] = useState(0);
+  const [passwordStep, setPasswordStep] = useState(0);
   const [startTime, setStartTime] = useState('');
   const [sleeping, setSleeping] = useState(false);
   const {
-    nextParentStep,
+    testStep,
+    nextStep,
     passwords,
     inputs,
     handleSetInputs,
+    handleUndo,
     clearInput,
     addLog,
   } = props;
 
   const addPasswordLog = () => {
     addLog({
-      trial: step + 1,
+      trial: passwordStep + 1,
       attempt: attempts + 1,
       startTime: startTime,
       endTime: moment().format(),
-      expected: passwords[step].value.join(' '),
-      actual: inputs[step].join(' '),
+      expected: passwords[passwordStep].value.join(' '),
+      actual: inputs[passwordStep].join(' '),
     });
 
     setStartTime('');
@@ -54,27 +56,25 @@ export const Step4 = props => {
     setStartTime(moment().format());
   }
 
-  // If input password has reached 4 characters
-  if (inputs[step].length === passwords[step].value.length && !sleeping) {
+  const handleSubmit = () => {
     setSleeping(true);
-    clearInput(step);
 
     // If input password is equal to expected password (CORRECT)
-    if (arraysEqual(passwords[step].value, inputs[step])) {
+    if (arraysEqual(passwords[passwordStep].value, inputs[passwordStep])) {
       flash(colors.correct);
 
       // If this was the last password, go to the next step (Step5)
-      if (step + 1 > 2) {
+      if (passwordStep + 1 > 2) {
         sleep(500).then(() => {
           setSleeping(false);
-          nextParentStep();
+          nextStep();
         });
       }
       // Else, go to the next password
       else {
         sleep(500).then(() => {
           setSleeping(false);
-          setStep(step + 1);
+          setPasswordStep(passwordStep + 1);
           setAttempts(0);
         });
       }
@@ -87,10 +87,10 @@ export const Step4 = props => {
         sleep(500).then(() => {
           setSleeping(false);
           // If this was the last password (password 3), go to the next step (Step5)
-          if (step + 1 > 2) nextParentStep();
+          if (passwordStep + 1 > 2) nextStep();
           // Else, go to the next password
           else {
-            setStep(step + 1);
+            setPasswordStep(passwordStep + 1);
             setAttempts(0);
           }
         });
@@ -99,23 +99,37 @@ export const Step4 = props => {
       else {
         sleep(500).then(() => {
           setSleeping(false);
+          clearInput(passwordStep);
           setAttempts(attempts + 1);
         });
       }
     }
 
-    addPasswordLog();
-  }
+    testStep && addPasswordLog();
+  };
 
   return (
     <div className={classes.root}>
-      <h3>
-        {passwords[step].type} password - Attempts: {attempts}/3
-      </h3>
-      <h3>Your input: {convertPassword(inputs[step])} </h3>
+      {testStep ? (
+        <h3>
+          {passwords[passwordStep].type} password - Attempts: {attempts}/3
+        </h3>
+      ) : (
+        <h3>
+          {passwords[passwordStep].type} password:{' '}
+          {convertPassword(passwords[passwordStep].value)}
+        </h3>
+      )}
+      <h3>Your input: {convertPassword(inputs[passwordStep])} </h3>
       <Piano
         handleSetInputs={sleeping ? () => {} : handleSetInputs}
-        index={step}
+        handleSubmit={handleSubmit}
+        handleUndo={handleUndo}
+        canSubmit={
+          inputs[passwordStep].length ===
+            passwords[passwordStep].value.length && !sleeping
+        }
+        index={passwordStep}
       />
     </div>
   );
