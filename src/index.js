@@ -15,4 +15,9 @@ firebase.initializeApp({
   appId: '1:463337157416:web:1cc0a39fa4b6a43be5161d',
 });
 
+// Hide right click menu
+document.oncontextmenu = () => {
+  return false;
+};
+
 ReactDOM.render(<App />, document.getElementById('root'));
