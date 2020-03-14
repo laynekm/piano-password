@@ -3,6 +3,7 @@ import { PianoKey } from './PianoKey';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Undo from '@material-ui/icons/Undo';
 import { Button } from '@material-ui/core';
+import { sounds } from './sounds';
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -41,6 +42,11 @@ export const Piano = props => {
   const blackKeyOffset = 15;
   const whiteKeyOffset = 32;
 
+  const playSound = note => {
+    const sound = sounds[note.replace('#', 's')];
+    sound.play();
+  };
+
   return (
     <React.Fragment>
       <div className={classes.root}>
@@ -48,96 +54,108 @@ export const Piano = props => {
           <PianoKey
             value={0}
             variant='white'
-            text='C'
+            note='C'
             updatePassword={handleSetInputs}
+            playSound={playSound}
             index={index}
           />
           <PianoKey
             value={1}
             variant='black'
             offset={blackKeyOffset}
-            text='C#'
+            note='C#'
             updatePassword={handleSetInputs}
+            playSound={playSound}
             index={index}
           />
           <PianoKey
             value={2}
             variant='white'
             offset={whiteKeyOffset}
-            text='D'
+            note='D'
             updatePassword={handleSetInputs}
+            playSound={playSound}
             index={index}
           />
           <PianoKey
             value={3}
             variant='black'
             offset={blackKeyOffset + whiteKeyOffset}
-            text='D#'
+            note='D#'
             updatePassword={handleSetInputs}
+            playSound={playSound}
             index={index}
           />
           <PianoKey
             value={4}
             variant='white'
             offset={whiteKeyOffset * 2}
-            text='E'
+            note='E'
             updatePassword={handleSetInputs}
+            playSound={playSound}
             index={index}
           />
           <PianoKey
             value={5}
             variant='white'
             offset={whiteKeyOffset * 2}
-            text='F'
+            note='F'
             updatePassword={handleSetInputs}
+            playSound={playSound}
             index={index}
           />
           <PianoKey
             value={6}
             variant='black'
             offset={blackKeyOffset + whiteKeyOffset * 2}
-            text='F#'
+            note='F#'
             updatePassword={handleSetInputs}
+            playSound={playSound}
             index={index}
           />
           <PianoKey
             value={7}
             variant='white'
             offset={whiteKeyOffset * 3}
-            text='G'
+            note='G'
             updatePassword={handleSetInputs}
+            playSound={playSound}
             index={index}
           />
           <PianoKey
             value={8}
             variant='black'
             offset={blackKeyOffset + whiteKeyOffset * 3}
-            text='G#'
+            note='G#'
             updatePassword={handleSetInputs}
+            playSound={playSound}
             index={index}
           />
           <PianoKey
             value={9}
             variant='white'
             offset={whiteKeyOffset * 4}
-            text='A'
+            note='A'
             updatePassword={handleSetInputs}
+            playSound={playSound}
             index={index}
           />
           <PianoKey
             value={10}
             variant='black'
             offset={blackKeyOffset + whiteKeyOffset * 4}
-            text='A#'
+            note='A#'
             updatePassword={handleSetInputs}
+            playSound={playSound}
             index={index}
           />
           <PianoKey
             value={11}
             variant='white'
             offset={whiteKeyOffset * 5}
-            text='B'
+            note='B'
             updatePassword={handleSetInputs}
+            playSound={playSound}
             index={index}
           />
         </div>

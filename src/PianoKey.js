@@ -45,14 +45,27 @@ const useStyles = makeStyles(() =>
 
 export const PianoKey = props => {
   const classes = useStyles();
-  const { value, variant, offset, text, updatePassword, index } = props;
+  const {
+    value,
+    variant,
+    offset,
+    note,
+    updatePassword,
+    playSound,
+    index,
+  } = props;
+
+  const onClick = () => {
+    playSound(note);
+    updatePassword(index, value);
+  };
 
   return (
     <div
       className={variant === 'white' ? classes.whiteKey : classes.blackKey}
       style={{ right: offset }}
-      onClick={() => updatePassword(index, value)}>
-      {text}
+      onClick={() => onClick()}>
+      {note}
     </div>
   );
 };
