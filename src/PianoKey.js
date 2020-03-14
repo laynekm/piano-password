@@ -13,6 +13,7 @@ const useStyles = makeStyles(() =>
       display: 'flex',
       alignItems: 'flex-end',
       justifyContent: 'center',
+      paddingBottom: 5,
       '&:hover': {
         backgroundColor: '#1E88E5',
       },
@@ -32,6 +33,7 @@ const useStyles = makeStyles(() =>
       display: 'flex',
       alignItems: 'flex-end',
       justifyContent: 'center',
+      paddingBottom: 5,
       '&:hover': {
         backgroundColor: '#1E88E5',
       },
