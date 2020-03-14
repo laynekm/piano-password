@@ -44,7 +44,7 @@ export const Piano = props => {
 
   const playSound = note => {
     const sound = sounds[note.replace('#', 's')];
-    sound.play();
+    sound.cloneNode(true).play();
   };
 
   return (
