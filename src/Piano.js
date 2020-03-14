@@ -23,7 +23,7 @@ const useStyles = makeStyles(() =>
     },
     bottom: {
       position: 'relative',
-      top: 30,
+      top: 40,
       width: 340,
       display: 'flex',
       flexDirection: 'row',
