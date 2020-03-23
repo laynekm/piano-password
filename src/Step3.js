@@ -25,7 +25,8 @@ export const Step3 = props => {
 
   return (
     <div className={classes.root}>
-      You will now be prompted to enter the passwords again in random order.
+      You will now be prompted to enter the passwords again in random order. You
+      will have three attempts for each one.
       <br />
       <Button
         className={classes.button}

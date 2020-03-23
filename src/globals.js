@@ -1,3 +1,5 @@
+export const passwordLength = 6;
+
 export const passwordTypes = ['Wifi', 'Email', 'McDonalds app'];
 
 export const degreeToKey = [0, 2, 4, 7, 9];

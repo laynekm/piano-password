@@ -5,7 +5,7 @@ import { PianoStep } from './PianoStep';
 import { Step5 } from './Step5';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { generatePassword, shuffleArray, convertPassword } from './utils';
-import { passwordTypes } from './globals';
+import { passwordLength, passwordTypes } from './globals';
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -32,9 +32,9 @@ const App = () => {
 
   // Generate passwords
   const [passwords] = useState({
-    0: { type: passwordTypes[0], value: generatePassword(4) },
-    1: { type: passwordTypes[1], value: generatePassword(4) },
-    2: { type: passwordTypes[2], value: generatePassword(4) },
+    0: { type: passwordTypes[0], value: generatePassword(passwordLength) },
+    1: { type: passwordTypes[1], value: generatePassword(passwordLength) },
+    2: { type: passwordTypes[2], value: generatePassword(passwordLength) },
   });
 
   // Shuffle passwords
