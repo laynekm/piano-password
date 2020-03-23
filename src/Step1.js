@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from '@material-ui/core';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { passwordLength } from './globals';
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -26,7 +27,7 @@ export const Step1 = props => {
   return (
     <div className={classes.root}>
       <h1>Piano Password</h1>
-      You will be given three passwords. Each consists of four notes.
+      {`You will be given 3 passwords. Each consists of ${passwordLength} notes.`}
       <br />
       First, you will be shown each password and prompted to input them.
       <br />
