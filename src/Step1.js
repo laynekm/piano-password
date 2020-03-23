@@ -32,7 +32,7 @@ export const Step1 = props => {
       First, you will be shown each password and prompted to input them.
       <br />
       Then, you will be prompted to input each password again in random order.
-      You will have three attempts for each one.
+      You will have 3 attempts for each one.
       <br />
       The purpose of this test is to determine the memorability of passwords
       using this scheme.
