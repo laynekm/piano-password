@@ -5,6 +5,12 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { convertPassword, arraysEqual, flash, sleep } from './utils';
 const moment = require('moment');
 
+/*
+  Component that renders steps in flow that display the Piano component (steps 2 and 4).
+  Contains logic about whether password should be displayed to user or not
+  and what happens when the user enters a correct/incorrect password.
+*/
+
 const useStyles = makeStyles(() =>
   createStyles({
     root: {

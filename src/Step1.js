@@ -3,6 +3,11 @@ import { Button } from '@material-ui/core';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { passwordLength } from './globals';
 
+/*
+  Component representing Step 1, the first thing the user sees.
+  Provides a brief overview of the app and its purpose.
+*/
+
 const useStyles = makeStyles(() =>
   createStyles({
     root: {

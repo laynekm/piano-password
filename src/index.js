@@ -5,6 +5,10 @@ import App from './App';
 import firebase from 'firebase';
 import 'firebase/storage';
 
+/*
+  Initializes Firebase connection and renders App component to DOM.
+*/
+
 firebase.initializeApp({
   apiKey: 'AIzaSyDxageXWYZEzEjXy74jRXtestQPSwdK9D4',
   authDomain: 'piano-password.firebaseapp.com',

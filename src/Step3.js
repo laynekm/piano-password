@@ -2,6 +2,11 @@ import React from 'react';
 import { Button } from '@material-ui/core';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 
+/*
+  Component representing Step 3.
+  Tells the user that they will now be tested.
+*/
+
 const useStyles = makeStyles(() =>
   createStyles({
     root: {

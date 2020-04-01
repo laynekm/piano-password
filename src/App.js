@@ -7,6 +7,12 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { generatePassword, shuffleArray, convertPassword } from './utils';
 import { passwordLength, passwordTypes } from './globals';
 
+/*
+  The main component which contains all the other components.
+  The state includse the randomly generated passwords and the user input for each one.
+  Tracks which step in the framework flow the user is on and renders the corresponding component.
+*/
+
 const useStyles = makeStyles(() =>
   createStyles({
     root: {

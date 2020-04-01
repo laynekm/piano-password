@@ -11,6 +11,10 @@ import Fs from './sounds/Fs.mp3';
 import G from './sounds/G.mp3';
 import Gs from './sounds/Gs.mp3';
 
+/*
+  Exports an object of all the note sounds.
+*/
+
 export const sounds = {
   A: new Audio(A),
   As: new Audio(As),

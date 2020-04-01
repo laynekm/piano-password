@@ -5,6 +5,11 @@ import Undo from '@material-ui/icons/Undo';
 import { Button } from '@material-ui/core';
 import { sounds } from './sounds';
 
+/*
+  Component represnting the piano interface.
+  Renders all the PianoKey components and the undo/enter buttons.
+*/
+
 const useStyles = makeStyles(() =>
   createStyles({
     root: {

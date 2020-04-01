@@ -5,6 +5,12 @@ import { storage } from 'firebase';
 import { createCsv } from './utils';
 const moment = require('moment');
 
+/*
+  Component representing Step 5, the final step.
+  Submits log data to Firebase and displays a circular progress indicator.
+  Once submitted, thanks the user for participating.
+*/
+
 const useStyles = makeStyles(() =>
   createStyles({
     root: {

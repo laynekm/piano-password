@@ -1,6 +1,11 @@
 import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 
+/*
+  Component representing a single piano key.
+  Has a white and black variant.
+*/
+
 const useStyles = makeStyles(() =>
   createStyles({
     whiteKey: {

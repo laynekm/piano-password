@@ -1,3 +1,7 @@
+/*
+  Global values that are used throughout the app.
+*/
+
 export const passwordLength = 6;
 
 export const passwordTypes = ['Wifi', 'Email', 'McDonalds app'];
