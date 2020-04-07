@@ -5,7 +5,11 @@ Part of Project 2 for COMP 3008.
 Developed using the React framework, which essentially divides the app into components which encapsulate a portion of the UI and functionality. The app is hosted on Firebase Hosting and logs are stored in Firebase Storage.
 
 Link: https://piano-password.web.app
-Launch command (requires npm): npm start
+
+Launch steps (requires npm)
+1. Install Node modules (run "npm install" in root directory)
+2. Launch app (run "npm start" in root directory)
+3. Visit localhost in browser (http://localhost:3000/)
 
 ### List of files (in src)
 - index.js - Initializes Firebase connection and renders App component to DOM.
